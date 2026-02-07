@@ -1,4 +1,7 @@
+# ID : 28751
+# Names : MUGISHA NKURAYIJA HUGUES
 # KMEI SHOP LTD
+
 BUSINESS PROBLEM : The business sells different products like milk products,wate and processed juice. It has to make database to keep different tables that it will need like the stock,products the orders made by Customers and the Suppliers to supply their goods each table with its attributes. So this database will help the shop to keep control of the transactions. 
 
 # ERD DIAGRAM FOR Kmei shop ltd
