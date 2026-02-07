@@ -17,11 +17,13 @@ select c.customer_id,c.customer_names,p.product_id,p.product_name from customers
 
 select p.product_id,p.product_name,o.order_id,o.quantity from orders o right join products p on o.product_id=p.product_id;
 
+--full_join
 /*  Using full join we can show the data of two tables 
 or more even if some rows are not full because there is no relation between all the columns (columns from one table and another*/
 
 select c.customer_id,c.customer_names,p.product_id,p.product_name from customers c full outer join orders o on c.order_id=o.order_id full outer join products p on p.product_id= o.product_id;
 
+--self_join
 #/*self_join  self join is used to compare may be rows inside a table 
  for example to compare the orders that were made at the same date*/
 
@@ -29,14 +31,14 @@ select c.customer_id,c.customer_names,p.product_id,p.product_name from customers
 
  # WINDOW FUNCTIONS
 
- /*1.Ranking functions  (Using Rank() function helps you to rank rows according 
+ /*1.Ranking functions : (Using Rank() function helps you to rank rows according 
 #to certain criteria. For my case I ranked products according to the product price)  */
 
  a.SELECT product_name, prod_price,RANK() OVER (ORDER BY prod_price DESC) AS product_rank FROM products;
 -- to not jump a number when there is a tie we use DENSE_RANK
 SELECT product_name, prod_price,DENSE_RANK() OVER (ORDER BY prod_price DESC) AS product_rank FROM products;
 
- /*2.Aggregate functions  The function sum() was used in the above query to show each date and the orders made.
+ /*2.Aggregate functions : The function sum() was used in the above query to show each date and the orders made.
   So here we can see a date and the total orders that took place
 . If one wants to avoid duplicates we can use group by and order by .*/
 
@@ -49,10 +51,13 @@ select order_date,quantity ,lag(quantity) OVER (Order by quantity) from orders;
 select order_date,quantity ,lead(quantity) OVER (Order by quantity) from orders;
 
  /*4.Distibution functions  The function NTILE ( ) is used to distribute the rows into classes. 
-For example here we have 3 classes where each has two rows.*/
+For example here we have 4 classes where each has two rows.*/
 
   select product_name,prod_price ,NTILE(4) OVER (ORDER BY prod_price DESC) from products;
+  -- cume_dist() is used to calculate relative rank of a value within values.
    select product_name,prod_price ,CUME_DIST() OVER (ORDER BY prod_price DESC) from products;
+
+   
 
   
  
